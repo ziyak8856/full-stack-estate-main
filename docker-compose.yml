@@ -41,3 +41,17 @@ services:
 
 volumes:
   mongo-data:
+# stage('Docker build&tag') {
+#     steps {
+#         script {
+#             // Authenticate with Docker registry using Jenkins credentials
+#             withDockerRegistry(credentialsId: 'docker-cred', toolName: 'docker') {
+#                 // Build and tag backend image
+#                 sh "docker build -t ziyak8856532/api:latest ./api"
+
+#                 // Build and tag frontend image
+#                 sh "docker build -t ziyak8856532/client:latest ./client"
+#             }
+#         }
+#     }
+#   }
