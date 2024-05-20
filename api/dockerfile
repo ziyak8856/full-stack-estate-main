@@ -1,18 +1,10 @@
 # Use an official Node.js 18 runtime as a parent image
-FROM node:18
+FROM node:18-alpine
 
 # Set the working directory
 WORKDIR /app
 
 # Install system dependencies (required for some npm packages)
-RUN apt-get update && apt-get install -y \
-    bash \
-    libc6-compat \
-    libgcc \
-    libstdc++ \
-    linux-headers-amd64 \
-    make \
-    g++
 
 # Copy package.json and package-lock.json
 COPY package*.json ./
