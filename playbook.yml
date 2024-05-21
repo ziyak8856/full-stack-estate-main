@@ -3,12 +3,7 @@
   hosts: local
   become: yes
   tasks:
-    - name: Ensure Docker is installed
-      become: yes
-      apt:
-        name: docker.io
-        state: present
-
+    
     - name: Ensure Docker Compose is installed
       become: yes
       get_url:
@@ -19,9 +14,9 @@
     - name: Copy Docker Compose file to server
       become: yes
       copy:
-        src:  docker-compose.yml
-        dest: /opt/docker-compose.yml
+        src:  /home/ziyaurraheman/Downloads/full-stack-estate-main/docker-compose.yml
+        dest: /home/ziyaurraheman/Downloads/full-stack-estate-main/docker-compose.yml
 
     - name: Start Docker Compose services
       become: yes
-      command: docker-compose -f /opt/docker-compose.yml up -d
+      command: docker-compose -f /home/ziyaurraheman/Downloads/full-stack-estate-main/docker-compose.yml up -d
