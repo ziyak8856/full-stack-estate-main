@@ -13,7 +13,10 @@ function HomePage() {
         <div className="wrapper">
           <h1 className="title">Find Real Estate & Get Your Dream Place</h1>
           <p>
-          Real estate development is a process that involves the purchase of raw land, rezoning, construction and renovation of buildings, and sale or lease of the finished product to end users
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos
+            explicabo suscipit cum eius, iure est nulla animi consequatur
+            facilis id pariatur fugit quos laudantium temporibus dolor ea
+            repellat provident ziya khan!
           </p>
           <SearchBar />
           <div className="boxes">
