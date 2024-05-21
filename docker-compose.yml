@@ -13,7 +13,7 @@ services:
     network_mode: host
 
   backend:
-    container_name: ziyak8856532/api:latest
+    image: ziyak8856532/api:latest
     environment:
       - DATABASE_URL=mongodb+srv://ziya:ziya@cluster0.b3wukwk.mongodb.net/proj?retryWrites=true&w=majority&appName=Cluster0
       - JWT_SECRET_KEY=qj8F2djyD9dSKhuFsz/2DM+AHxnXrt6ClqakNBjyrv8=
@@ -26,7 +26,7 @@ services:
 
   frontend:
     
-    container_name: ziyak8856532/api:latest
+    image : ziyak8856532/client:latest
     environment:
       - NODE_ENV=development
    
