@@ -19,7 +19,7 @@ RUN npm install -g nodemon
 COPY . .
 
 # Expose the port the app runs on
-
+EXPOSE 8012
 
 # Set environment variables from .env file
 ARG NODE_ENV=production
