@@ -10,9 +10,7 @@ services:
     volumes:
       - mongo-data:/data/db
       - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
-    ports:
-      - "27017:27017"  # Map container port 27017 to host port 27017
-    
+    network_mode: host
 
   backend:
     image: ziyak8856532/api:latest
@@ -23,19 +21,15 @@ services:
       - MAPBOX_ACCESS_TOKEN=pk.eyJ1Ijoieml5YWtoYW4iLCJhIjoiY2x3Ynh2aDIxMG91eTJrczJ5MXVkODE5NiJ9.asEwQKji9P8JSXcCGM4RCw
     depends_on:
       - mongo
-    command: ["nodemon","app.js"]
-    ports:
-      - "8012:8012"  # Map container port 3000 to host port 3000
-    
+    command: ["nodemon", "app.js"]
+    network_mode: host
 
   frontend:
     image: ziyak8856532/client:latest
     environment:
       - NODE_ENV=development
     command: ["npm", "run", "dev"]
-    ports:
-      - "5173:5173"  # Map container port 5173 to host port 5173
-   
+    network_mode: host
 
 volumes:
   mongo-data:
