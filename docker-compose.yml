@@ -10,7 +10,8 @@ services:
     volumes:
       - mongo-data:/data/db
       - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
-    network_mode: host
+    networks:
+      - mynetwork
 
   backend:
     image: ziyak8856532/api:latest
@@ -22,30 +23,20 @@ services:
     depends_on:
       - mongo
     command: ["nodemon","app.js"]
-    network_mode: host
+    networks:
+      - mynetwork
 
   frontend:
-    
-    image : ziyak8856532/client:latest
+    image: ziyak8856532/client:latest
     environment:
       - NODE_ENV=development
-   
     command: ["npm", "run", "dev"]
-    network_mode: host
+    networks:
+      - mynetwork
 
 volumes:
   mongo-data:
-# stage('Docker build&tag') {
-#     steps {
-#         script {
-#             // Authenticate with Docker registry using Jenkins credentials
-#             withDockerRegistry(credentialsId: 'docker-cred', toolName: 'docker') {
-#                 // Build and tag backend image
-#                 sh "docker build -t ziyak8856532/api:latest ./api"
 
-#                 // Build and tag frontend image
-#                 sh "docker build -t ziyak8856532/client:latest ./client"
-#             }
-#         }
-#     }
-#   }
+networks:
+  mynetwork:
+    driver: bridge
