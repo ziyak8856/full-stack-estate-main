@@ -12,11 +12,12 @@ services:
       - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
     ports:
       - "27017:27017"  # Map container port 27017 to host port 27017
-    network_mode: host
+    
 
   backend:
     image: ziyak8856532/api:latest
     environment:
+      - CLIENT_URL=http://localhost:5173
       - DATABASE_URL=mongodb+srv://ziya:ziya@cluster0.b3wukwk.mongodb.net/proj?retryWrites=true&w=majority&appName=Cluster0
       - JWT_SECRET_KEY=qj8F2djyD9dSKhuFsz/2DM+AHxnXrt6ClqakNBjyrv8=
       - MAPBOX_ACCESS_TOKEN=pk.eyJ1Ijoieml5YWtoYW4iLCJhIjoiY2x3Ynh2aDIxMG91eTJrczJ5MXVkODE5NiJ9.asEwQKji9P8JSXcCGM4RCw
@@ -24,8 +25,8 @@ services:
       - mongo
     command: ["nodemon","app.js"]
     ports:
-      - "3000:3000"  # Map container port 3000 to host port 3000
-    network_mode: host
+      - "8012:8012"  # Map container port 3000 to host port 3000
+    
 
   frontend:
     image: ziyak8856532/client:latest
@@ -34,7 +35,7 @@ services:
     command: ["npm", "run", "dev"]
     ports:
       - "5173:5173"  # Map container port 5173 to host port 5173
-    network_mode: host
+   
 
 volumes:
   mongo-data:
