@@ -15,19 +15,21 @@ services:
   backend:
     image: ziyak8856532/api:latest
     environment:
-      - CLIENT_URL=http://localhost:5173
       - DATABASE_URL=mongodb+srv://ziya:ziya@cluster0.b3wukwk.mongodb.net/proj?retryWrites=true&w=majority&appName=Cluster0
       - JWT_SECRET_KEY=qj8F2djyD9dSKhuFsz/2DM+AHxnXrt6ClqakNBjyrv8=
+      - CLIENT_URL=http://localhost:5173
       - MAPBOX_ACCESS_TOKEN=pk.eyJ1Ijoieml5YWtoYW4iLCJhIjoiY2x3Ynh2aDIxMG91eTJrczJ5MXVkODE5NiJ9.asEwQKji9P8JSXcCGM4RCw
     depends_on:
       - mongo
-    command: ["nodemon", "app.js"]
+    command: ["nodemon","app.js"]
     network_mode: host
 
   frontend:
-    image: ziyak8856532/client:latest
+    
+    image : ziyak8856532/client:latest
     environment:
       - NODE_ENV=development
+   
     command: ["npm", "run", "dev"]
     network_mode: host
 
