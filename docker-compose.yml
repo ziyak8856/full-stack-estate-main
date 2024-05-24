@@ -21,6 +21,7 @@ services:
     depends_on:
       - mongo
     command: ["nodemon","app.js"]
+    network_mode: host
 
   frontend:
     image: ziyak8856532/client:latest
