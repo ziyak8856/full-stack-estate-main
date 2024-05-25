@@ -22,7 +22,6 @@ const app = express();
 //    // Allow requests from the frontend running on this origin
 // }));
 app.use(cors({
-  
   origin: true,
   credentials: true,
   
