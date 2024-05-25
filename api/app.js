@@ -22,8 +22,9 @@ const app = express();
 //    // Allow requests from the frontend running on this origin
 // }));
 app.use(cors({
-  origin: true,
-  credentials: true
+  credentials: true,
+  origin: true
+  
 }));
 app.use(express.json());
 app.use(cookieParser());
