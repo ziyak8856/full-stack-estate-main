@@ -9,6 +9,7 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: example
     volumes:
       - mongo-data:/data/db
+      - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
     network_mode: host
 
   backend:
@@ -17,17 +18,57 @@ services:
       - DATABASE_URL=mongodb+srv://ziya:ziya@cluster0.b3wukwk.mongodb.net/proj?retryWrites=true&w=majority&appName=Cluster0
       - JWT_SECRET_KEY=qj8F2djyD9dSKhuFsz/2DM+AHxnXrt6ClqakNBjyrv8=
       - CLIENT_URL=http://localhost:5173
-      - MAPBOX_ACCESS_TOKEN=pk.eyJ1Ijoieml5YWtoYW91eTJrczJ5MXVkODE5NiJ9.asEwQKji9P8JSXcCGM4RCw
+      - MAPBOX_ACCESS_TOKEN=pk.eyJ1Ijoieml5YWtoYW4iLCJhIjoiY2x3Ynh2aDIxMG91eTJrczJ5MXVkODE5NiJ9.asEwQKji9P8JSXcCGM4RCw
     depends_on:
       - mongo
+    command: ["nodemon","app.js"]
     network_mode: host
 
   frontend:
     image: ziyak8856532/client:latest
     environment:
       - NODE_ENV=development
+    command: ["npm", "run", "dev"]
     network_mode: host
+
+  # elasticsearch:
+  #   image: docker.elastic.co/elasticsearch/elasticsearch:7.17.1
+  #   container_name: elasticsearch
+  #   environment:
+  #     - discovery.type=single-node
+  #     - http.host=0.0.0.0
+  #     - transport.host=0.0.0.0
+  #     - xpack.security.enabled=false
+  #     - xpack.monitoring.enabled=false
+  #     - cluster.name=elasticsearch
+  #     - bootstrap.memory_lock=true
+  #   volumes:
+  #     - test_data:/usr/share/elasticsearch/data/
+  #     - ./elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+  #   network_mode: host
+
+  # logstash:
+  #   image: docker.elastic.co/logstash/logstash:7.17.1
+  #   container_name: logstash
+  #   volumes:
+  #     - ./logstash.conf:/usr/share/logstash/pipeline/logstash.conf
+  #     - ./logstash.yml:/usr/share/logstash/config/logstash.yml
+  #     - ls_data:/usr/share/logstash/data
+  #   depends_on:
+  #     - elasticsearch
+
+  # kibana:
+  #   image: docker.elastic.co/kibana/kibana:7.17.1
+  #   container_name: kibana
+  #   network_mode: host
+  #   volumes:
+  #     - ./kibana.yml:/usr/share/kibana/config/kibana.yml
+  #     - kb_data:/usr/share/kibana/data
+  #   depends_on:
+  #     - elasticsearch
 
 volumes:
   mongo-data:
-    driver: local
+  # test_data:
+  # ls_data:
+  # kb_data:
