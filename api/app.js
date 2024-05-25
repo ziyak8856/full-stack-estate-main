@@ -19,7 +19,7 @@ app.use(function(req, res, next) {
 app.use(cors({
   origin: 'http://localhost:5173' // Allow requests from the frontend running on this origin
 }));
-app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
+app.use(cors({ origin: process.env.CLIENT_URL, credentials: false }));
 app.use(express.json());
 app.use(cookieParser());
 

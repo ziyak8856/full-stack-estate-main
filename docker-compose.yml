@@ -13,10 +13,14 @@ services:
 
   backend:
     image: ziyak8856532/api:latest
-   
+    environment:
+      - DATABASE_URL=mongodb+srv://ziya:ziya@cluster0.b3wukwk.mongodb.net/proj?retryWrites=true&w=majority&appName=Cluster0
+      - JWT_SECRET_KEY=qj8F2djyD9dSKhuFsz/2DM+AHxnXrt6ClqakNBjyrv8=
+      - CLIENT_URL=http://localhost:5173
+      - MAPBOX_ACCESS_TOKEN=pk.eyJ1Ijoieml5YWtoYW91eTJrczJ5MXVkODE5NiJ9.asEwQKji9P8JSXcCGM4RCw
     depends_on:
       - mongo
-    
+    network_mode: host
 
   frontend:
     image: ziyak8856532/client:latest
