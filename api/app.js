@@ -16,8 +16,10 @@ app.use(cookieParser());
 
 // CORS configuration
 app.use(cors({
-  origin: true,
-  credentials: true,
+  origin: '*', // Allow requests from any origin
+  methods: ['GET', 'PUT', 'POST'], // Allow specified methods
+  allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept'], // Allow specified headers
+  credentials: true // Include credentials in CORS requests
 }));
 
 // Routes
