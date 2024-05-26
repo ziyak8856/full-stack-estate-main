@@ -9,16 +9,16 @@ import chatRoute from "./routes/chat.route.js";
 import messageRoute from "./routes/message.route.js";
 
 const app = express();
-app.use(cors({
-  origin: true,
-  credentials: true,
-}));
+
 // Middleware for parsing JSON and handling cookies
 app.use(express.json());
 app.use(cookieParser());
 
 // CORS configuration
-
+app.use(cors({
+  origin: true,
+  credentials: true,
+}));
 
 // Routes
 app.use("/api/auth", authRoute);
