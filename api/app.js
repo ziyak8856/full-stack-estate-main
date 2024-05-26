@@ -28,7 +28,7 @@ const app = express();
 // }));
 
 
-aapp.use(cors({
+app.use(cors({
   origin: '*',  // Allow requests from the frontend running on this origin
   credentials: true,                // Allow credentials (cookies, authorization headers, etc.)
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
