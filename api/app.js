@@ -28,19 +28,12 @@ const app = express();
 // }));
 
 
-app.use(cors({
-  origin: 'http://localhost:5173',  // Allow requests from the frontend running on this origin
-  credentials: true,                // Allow credentials (cookies, authorization headers, etc.)
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept']
-}));
 
-// Middleware to handle preflight requests
-app.options('*', cors({
-  origin: true,
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept']
+const allowedOrigin = 'http://localhost:5173';
+
+app.use(cors({
+  origin: allowedOrigin,
+  credentials: true
 }));
 
 // Middleware to handle preflight requests
