@@ -8,43 +8,19 @@ import userRoute from "./routes/user.route.js";
 import chatRoute from "./routes/chat.route.js";
 import messageRoute from "./routes/message.route.js";
 
-
 const app = express();
-// app.use(function(req, res, next) {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   res.header("Access-Control-Allow-Methods", "GET, PUT, POST");
-//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//   next();
-// });
-// // app.use(cors({
-//   origin: 'http://localhost:5173',
-//   credentials: true
-//    // Allow requests from the frontend running on this origin
-// }));
-// app.use(cors({
-//   origin: true,
-//   credentials: true,
-  
-// }));
 
-
-
-const allowedOrigin = 'http://localhost:5173';
-
-app.use(cors({
-  origin: allowedOrigin,
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true
-}));
-
-
-// Middleware to handle preflight requests
-app.options('*', cors());
-
+// Middleware for parsing JSON and handling cookies
 app.use(express.json());
 app.use(cookieParser());
 
+// CORS configuration
+app.use(cors({
+  origin: true,
+  credentials: true,
+}));
+
+// Routes
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 app.use("/api/posts", postRoute);
@@ -52,7 +28,8 @@ app.use("/api/test", testRoute);
 app.use("/api/chats", chatRoute);
 app.use("/api/messages", messageRoute);
 
-app.listen(8012,()=>{
-  console.log("running");
+// Start server
+const PORT = 8012;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
-
