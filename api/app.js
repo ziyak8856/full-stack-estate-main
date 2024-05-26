@@ -33,8 +33,11 @@ const allowedOrigin = 'http://localhost:5173';
 
 app.use(cors({
   origin: allowedOrigin,
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
 }));
+
 
 // Middleware to handle preflight requests
 app.options('*', cors());
