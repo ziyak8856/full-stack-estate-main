@@ -21,11 +21,20 @@ const app = express();
 //   credentials: true
 //    // Allow requests from the frontend running on this origin
 // }));
-app.use(cors({
-  origin: true,
-  credentials: true,
+// app.use(cors({
+//   origin: true,
+//   credentials: true,
   
+// }));
+const cors = require('cors');
+
+app.use(cors({
+  origin: (origin, callback) => {
+    callback(null, true);
+  },
+  credentials: true
 }));
+
 app.use(express.json());
 app.use(cookieParser());
 
