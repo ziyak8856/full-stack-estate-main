@@ -26,14 +26,17 @@ const app = express();
 //   credentials: true,
   
 // }));
-const cors = require('cors');
+
 
 app.use(cors({
-  origin: (origin, callback) => {
-    callback(null, true);
-  },
-  credentials: true
+  origin: 'http://localhost:5173',  // Allow requests from the frontend running on this origin
+  credentials: true,                // Allow credentials (cookies, authorization headers, etc.)
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept']
 }));
+
+// Middleware to handle preflight requests
+app.options('*', cors());
 
 app.use(express.json());
 app.use(cookieParser());
