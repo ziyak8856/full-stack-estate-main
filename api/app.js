@@ -19,10 +19,7 @@ app.use(cors({
   origin: 'http://localhost:5173',
   credentials: true
 }));
-app.use('/profile/update', cors({
-  origin: 'http://localhost:5173', // Specify the allowed origin for /profile/add route
-  credentials: true
-}));
+
 
 
 // Routes
