@@ -29,7 +29,7 @@ const app = express();
 
 
 app.use(cors({
-  origin: '*',  // Allow requests from the frontend running on this origin
+  origin: 'http://localhost:5173',  // Allow requests from the frontend running on this origin
   credentials: true,                // Allow credentials (cookies, authorization headers, etc.)
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept']
@@ -37,7 +37,7 @@ app.use(cors({
 
 // Middleware to handle preflight requests
 app.options('*', cors({
-  origin: '*',
+  origin: true,
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept']
