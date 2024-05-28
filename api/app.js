@@ -10,20 +10,15 @@ import messageRoute from "./routes/message.route.js";
 
 const app = express();
 
-// Middleware for parsing JSON and handling cookies
-app.use(express.json());
 app.use(cors({
-  origin: 'http://localhost:5173',
+  origin: (origin, callback) => {
+    callback(null, true);
+  },
   credentials: true
 }));
-
+app.use(express.json());
 app.use(cookieParser());
 
-// CORS configuration
-
-
-
-// Routes
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 app.use("/api/posts", postRoute);
@@ -31,8 +26,8 @@ app.use("/api/test", testRoute);
 app.use("/api/chats", chatRoute);
 app.use("/api/messages", messageRoute);
 
-// Start server
-const PORT = 8012;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+const server = app.listen(8012, () => {
+  console.log("Server is running on port 8012");
 });
+
+export { app, server };
