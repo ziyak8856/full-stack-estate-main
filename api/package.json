@@ -5,7 +5,9 @@
   "main": "app.js",
   "type": "module",
   "scripts": {
-    "test": "echo \" test ok\" && exit 0"
+    "test:auth": "jest test/auth.controller.test.js",
+    "test:user": "jest test/userController.test.js",
+    "test": "npm run test:auth && npm run test:user"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +21,15 @@
     "jsonwebtoken": "^9.0.2"
   },
   "devDependencies": {
-    "prisma": "^5.14.0"
+    "@babel/core": "^7.24.6",
+    "@babel/preset-env": "^7.24.6",
+    "@babel/preset-typescript": "^7.24.6",
+    "babel-jest": "^29.7.0",
+    "chai": "^5.1.1",
+    "chai-http": "^4.4.0",
+    "jest": "^29.7.0",
+    "mocha": "^10.4.0",
+    "prisma": "^5.14.0",
+    "supertest": "^7.0.0"
   }
 }
