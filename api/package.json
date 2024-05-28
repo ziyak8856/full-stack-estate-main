@@ -5,8 +5,9 @@
   "main": "app.js",
   "type": "module",
   "scripts": {
-    
-    "test": "jest"
+    "test:auth": "jest test/auth.controller.test.js",
+    "test:user": "jest test/userController.test.js",
+    "test": "npm run test:auth && npm run test:user"
   },
   "keywords": [],
   "author": "",
