@@ -12,17 +12,16 @@ const app = express();
 
 // Middleware for parsing JSON and handling cookies
 app.use(express.json());
+app.use(cors({
+  origin: 'http://localhost:5173',
+  credentials: true
+}));
 
 app.use(cookieParser());
 
 // CORS configuration
 
-app.use(cors({
-  origin: (origin, callback) => {
-    callback(null, true);
-  },
-  credentials: true
-}));
+
 
 // Routes
 app.use("/api/auth", authRoute);
