@@ -9,13 +9,14 @@ import chatRoute from "./routes/chat.route.js";
 import messageRoute from "./routes/message.route.js";
 
 const app = express();
-
-// Middleware for parsing JSON and handling cookies
-app.use(express.json());
 app.use(cors({
-  origin: 'http://localhost:5173',
+  origin: true, // This will allow all origins
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   credentials: true
 }));
+// Middleware for parsing JSON and handling cookies
+app.use(express.json());
+
 
 app.use(cookieParser());
 
