@@ -11,8 +11,7 @@ import messageRoute from "./routes/message.route.js";
 const app = express();
 
 app.use(cors({
-  origin: true, // This will allow all origins
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+ origin: 'http://localhost:5173',
   credentials: true
 }));
 // Middleware for parsing JSON and handling cookies
